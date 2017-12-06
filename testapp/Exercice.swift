@@ -8,15 +8,20 @@
 
 import UIKit
 
-class Exercice : UIViewController {
+class Exercice : UIViewController, UITextFieldDelegate {
     
     @IBOutlet var tfNombreEntre : UITextField!
     @IBOutlet var bFin : UIButton!
     @IBOutlet var sAuto : UISwitch!
+    @IBOutlet var slnumber : UISlider!
+    @IBOutlet var stNumber : UIStepper!
     var modeAuto : BooleanLiteralType = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tfNombreEntre.delegate = self
+        slnumber.maximumValue = 99
+        stNumber.maximumValue = 99
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -57,13 +62,55 @@ class Exercice : UIViewController {
     }
     
     @IBAction func texteModifie (sender : UITextField){
+        if let resultat = sender.text {
+            if let entier = Int(resultat) {
+                if entier > 99 {
+                    sender.text = "99"
+                }
+                slnumber.setValue(Float(entier), animated: true)
+                stNumber.value = Double(entier)
+                
+            }
+        }
+    }
+    
+    @IBAction func sliderMove(sender : UISlider){
+        let entier = Int(sender.value)
+        tfNombreEntre.text = String(entier)
+        stNumber.value = Double(entier)
+    }
+    
+    @IBAction func stepperTouched(sender : UIStepper){
+        let entier = Int(sender.value)
+        tfNombreEntre.text = String(entier)
+        slnumber.value = Float(entier)
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if modeAuto {
-            if let resultat = sender.text, resultat != "" {
-                if Int(resultat) == 8{
-                    alert("Bravo", message: "T'es trop fort")
+            if let resultat = textField.text, resultat != "" {
+                if Int(resultat) == 8 {
+                    alert("Bravo tu gères", message: "T'es trop bon !")
+                } else {
+                    alert("Boloss", message: "T'es trop nul...")
                 }
             }
         }
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if modeAuto {
+            if let resultat = textField.text, resultat != "" {
+                if Int(resultat) == 8 {
+                    alert("Bravo tu gères", message: "T'es trop bon !")
+                } else {
+                    alert("Boloss", message: "T'es trop nul...")
+                }
+            }
+        }
+        return true
     }
 
 
