@@ -34,7 +34,7 @@
                                 <rect key="frame" x="164" y="513" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="goExerciceWithSender:" destination="07W-o5-8nx" eventType="touchUpInside" id="Ice-a8-8Q4"/>
+                                    <action selector="goExerciceWithSender:" destination="07W-o5-8nx" eventType="touchUpInside" id="0wb-cQ-AGn"/>
                                 </connections>
                             </button>
                         </subviews>

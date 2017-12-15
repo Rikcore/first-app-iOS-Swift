@@ -78,12 +78,14 @@ class Exercice : UIViewController, UITextFieldDelegate {
         let entier = Int(sender.value)
         tfNombreEntre.text = String(entier)
         stNumber.value = Double(entier)
+        testAnswer(answer: entier)
     }
     
     @IBAction func stepperTouched(sender : UIStepper){
         let entier = Int(sender.value)
         tfNombreEntre.text = String(entier)
         slnumber.value = Float(entier)
+        testAnswer(answer: entier)
         
     }
     
@@ -111,6 +113,15 @@ class Exercice : UIViewController, UITextFieldDelegate {
             }
         }
         return true
+    }
+    
+    func testAnswer (answer : Int) {
+        if modeAuto {
+            if answer == 8 {
+                alert("Bravo tu gères", message: "T'es trop bon !")
+            }
+            
+        }
     }
 
 
