@@ -10,7 +10,7 @@ import UIKit
 
 class Accueil : UIViewController {
     
-    @IBOutlet var testButton : UIButton!
+    //@IBOutlet var testButton : UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +24,19 @@ class Accueil : UIViewController {
         self.view.endEditing(true)
     }
     
-    @IBAction func goExercice (sender : UIButton){
+    /*@IBAction func goExercice (sender : UIButton){
         let storyboard = UIStoryboard(name : "Main", bundle: nil)
         let exo = storyboard.instantiateViewController(withIdentifier: "exercice") as! Exercice
         navigationController?.showDetailViewController(exo, sender: self)
+    }*/
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showExercice"{
+            let exo = segue.destination as! Exercice
+            exo.niveau = 1
+        } else if segue.identifier == "showSecondExercice"{
+            let exo = segue.destination as! Exercice
+            exo.niveau = 2
+        }
     }
 }

@@ -10,18 +10,29 @@ import UIKit
 
 class Exercice : UIViewController, UITextFieldDelegate {
     
+    @IBOutlet var lbQuestion : UILabel!
     @IBOutlet var tfNombreEntre : UITextField!
     @IBOutlet var bFin : UIButton!
     @IBOutlet var sAuto : UISwitch!
     @IBOutlet var slnumber : UISlider!
     @IBOutlet var stNumber : UIStepper!
     var modeAuto : BooleanLiteralType = false
+    var niveau : Int!
+    var goodAnswer : Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tfNombreEntre.delegate = self
         slnumber.maximumValue = 99
         stNumber.maximumValue = 99
+        
+        if niveau == 1 {
+            lbQuestion.text = "4 + 4 ="
+            goodAnswer = 8
+        } else if niveau == 2 {
+            lbQuestion.text = "2 x 5 ="
+            goodAnswer = 10
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -46,7 +57,7 @@ class Exercice : UIViewController, UITextFieldDelegate {
         //On vérifie que le texte entré par l'utilisateur n'est pas nil
         if let resultat = tfNombreEntre.text, resultat != "" {
             //On regarde si le résultat est 8
-            if Int(resultat) == 8 {
+            if Int(resultat) == goodAnswer {
                 alert("Bravo", message: "4 + 4 = 8\nC'est une bonne réponse")
             } else {
                 alert("Faux", message: "Ce n'est pas la bonne réponse, réessayez !")
@@ -92,7 +103,7 @@ class Exercice : UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if modeAuto {
             if let resultat = textField.text, resultat != "" {
-                if Int(resultat) == 8 {
+                if Int(resultat) == goodAnswer {
                     alert("Bravo tu gères", message: "T'es trop bon !")
                 } else {
                     alert("Boloss", message: "T'es trop nul...")
@@ -105,7 +116,7 @@ class Exercice : UIViewController, UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if modeAuto {
             if let resultat = textField.text, resultat != "" {
-                if Int(resultat) == 8 {
+                if Int(resultat) == goodAnswer {
                     alert("Bravo tu gères", message: "T'es trop bon !")
                 } else {
                     alert("Boloss", message: "T'es trop nul...")
@@ -117,7 +128,7 @@ class Exercice : UIViewController, UITextFieldDelegate {
     
     func testAnswer (answer : Int) {
         if modeAuto {
-            if answer == 8 {
+            if answer == goodAnswer {
                 alert("Bravo tu gères", message: "T'es trop bon !")
             }
             
