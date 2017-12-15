@@ -41,11 +41,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="11i-NC-oQi" firstAttribute="top" secondItem="r7d-pT-PLA" secondAttribute="top" constant="254" id="4BR-Q3-SiG"/>
+                            <constraint firstItem="mMX-Ba-ptj" firstAttribute="top" secondItem="11i-NC-oQi" secondAttribute="bottom" constant="51" id="6tC-ch-nYI"/>
                             <constraint firstItem="r7d-pT-PLA" firstAttribute="bottom" secondItem="11i-NC-oQi" secondAttribute="bottom" constant="319" id="C5s-Uh-oDB"/>
                             <constraint firstItem="mMX-Ba-ptj" firstAttribute="leading" secondItem="r7d-pT-PLA" secondAttribute="leading" constant="164" id="KtV-D9-Ita"/>
                             <constraint firstItem="r7d-pT-PLA" firstAttribute="trailing" secondItem="mMX-Ba-ptj" secondAttribute="trailing" constant="165" id="R96-80-fnl"/>
                             <constraint firstItem="11i-NC-oQi" firstAttribute="leading" secondItem="r7d-pT-PLA" secondAttribute="leading" constant="122" id="a4K-OF-rvy"/>
-                            <constraint firstItem="r7d-pT-PLA" firstAttribute="bottom" secondItem="mMX-Ba-ptj" secondAttribute="bottom" constant="124" id="pXR-ea-YMf"/>
                             <constraint firstItem="r7d-pT-PLA" firstAttribute="trailing" secondItem="11i-NC-oQi" secondAttribute="trailing" constant="122" id="yYu-lg-b9u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r7d-pT-PLA"/>

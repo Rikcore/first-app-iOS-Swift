@@ -31,6 +31,11 @@ class Accueil : UIViewController {
     }*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let backItem = UIBarButtonItem()
+        backItem.title = "Retour"
+        navigationItem.backBarButtonItem = backItem
+        
         if segue.identifier == "showExercice"{
             let exo = segue.destination as! Exercice
             exo.niveau = 1

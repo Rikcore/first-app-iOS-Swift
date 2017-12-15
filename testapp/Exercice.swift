@@ -35,6 +35,7 @@ class Exercice : UIViewController, UITextFieldDelegate {
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -100,26 +101,13 @@ class Exercice : UIViewController, UITextFieldDelegate {
         
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if modeAuto {
-            if let resultat = textField.text, resultat != "" {
-                if Int(resultat) == goodAnswer {
-                    alert("Bravo tu gères", message: "T'es trop bon !")
-                } else {
-                    alert("Boloss", message: "T'es trop nul...")
-                }
-            }
-        }
-        return true
-    }
-    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if modeAuto {
             if let resultat = textField.text, resultat != "" {
                 if Int(resultat) == goodAnswer {
                     alert("Bravo tu gères", message: "T'es trop bon !")
                 } else {
-                    alert("Boloss", message: "T'es trop nul...")
+                    alert("Faux", message: "Ce n'est pas la bonne réponse.")
                 }
             }
         }
