@@ -19,6 +19,8 @@ class Exercice : UIViewController, UITextFieldDelegate {
     var modeAuto : BooleanLiteralType = false
     var niveau : Int!
     var goodAnswer : Int!
+    
+    var calcul : CalculExercice!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +28,16 @@ class Exercice : UIViewController, UITextFieldDelegate {
         slnumber.maximumValue = 99
         stNumber.maximumValue = 99
         
-        if niveau == 1 {
+        /*if niveau == 1 {
             lbQuestion.text = "4 + 4 ="
             goodAnswer = 8
         } else if niveau == 2 {
             lbQuestion.text = "2 x 5 ="
             goodAnswer = 10
-        }
+        }*/
+        
+        calcul = CalculExercice(difficulte : niveau)
+        lbQuestion.text = calcul.consigne
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -58,8 +63,8 @@ class Exercice : UIViewController, UITextFieldDelegate {
         //On vérifie que le texte entré par l'utilisateur n'est pas nil
         if let resultat = tfNombreEntre.text, resultat != "" {
             //On regarde si le résultat est 8
-            if Int(resultat) == goodAnswer {
-                alert("Bravo", message: "4 + 4 = 8\nC'est une bonne réponse")
+            if Int(resultat) == calcul.reponse {
+                alert("Bravo", message: "C'est une bonne réponse")
             } else {
                 alert("Faux", message: "Ce n'est pas la bonne réponse, réessayez !")
             }
@@ -104,7 +109,7 @@ class Exercice : UIViewController, UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if modeAuto {
             if let resultat = textField.text, resultat != "" {
-                if Int(resultat) == goodAnswer {
+                if Int(resultat) == calcul.reponse {
                     alert("Bravo tu gères", message: "T'es trop bon !")
                 } else {
                     alert("Faux", message: "Ce n'est pas la bonne réponse.")
@@ -116,7 +121,7 @@ class Exercice : UIViewController, UITextFieldDelegate {
     
     func testAnswer (answer : Int) {
         if modeAuto {
-            if answer == goodAnswer {
+            if answer == calcul.reponse {
                 alert("Bravo tu gères", message: "T'es trop bon !")
             }
             
