@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class Exercice : UIViewController, UITextFieldDelegate {
     
@@ -21,23 +22,30 @@ class Exercice : UIViewController, UITextFieldDelegate {
     var goodAnswer : Int!
     
     var calcul : CalculExercice!
+    
+    var ref: DatabaseReference!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tfNombreEntre.delegate = self
+        tfNombreEntre.keyboardType = UIKeyboardType.numberPad
         slnumber.maximumValue = 99
         stNumber.maximumValue = 99
         
-        /*if niveau == 1 {
-            lbQuestion.text = "4 + 4 ="
-            goodAnswer = 8
-        } else if niveau == 2 {
-            lbQuestion.text = "2 x 5 ="
-            goodAnswer = 10
-        }*/
-        
         calcul = CalculExercice(difficulte : niveau)
         lbQuestion.text = calcul.consigne
+        
+        ref = Database.database().reference()
+        
+        ref.child("testIOS").observeSingleEvent(of: .value, with: {(snapshot) in
+            print(snapshot.value as? String! as Any)
+        })
+        
+        /*Auth.auth().createUser(withEmail: "iphone@test.fr", password: "password") { (user, error) in
+            // ...
+        }*/
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -76,6 +84,8 @@ class Exercice : UIViewController, UITextFieldDelegate {
     @IBAction func autoOnOff (sender : UISwitch){
         modeAuto = sender.isOn
         bFin.isHidden = modeAuto
+        slnumber.isHidden = modeAuto
+        stNumber.isHidden = modeAuto
     }
     
     @IBAction func texteModifie (sender : UITextField){
@@ -95,34 +105,32 @@ class Exercice : UIViewController, UITextFieldDelegate {
         let entier = Int(sender.value)
         tfNombreEntre.text = String(entier)
         stNumber.value = Double(entier)
-        testAnswer(answer: entier)
     }
     
     @IBAction func stepperTouched(sender : UIStepper){
         let entier = Int(sender.value)
         tfNombreEntre.text = String(entier)
         slnumber.value = Float(entier)
-        testAnswer(answer: entier)
+        
         
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if modeAuto {
             if let resultat = textField.text, resultat != "" {
-                if Int(resultat) == calcul.reponse {
-                    alert("Bravo tu gères", message: "T'es trop bon !")
-                } else {
-                    alert("Faux", message: "Ce n'est pas la bonne réponse.")
-                }
+                let intResultat = Int(resultat)
+                testAnswer(answer: intResultat!)
             }
         }
         return true
     }
     
-    func testAnswer (answer : Int) {
+    func testAnswer (answer : Int){
         if modeAuto {
             if answer == calcul.reponse {
-                alert("Bravo tu gères", message: "T'es trop bon !")
+                alert("Bravo", message: "C'est une bonne réponse !")
+            } else {
+                alert("Faux", message: "Ce n'est pas la bonne réponse.")
             }
             
         }
