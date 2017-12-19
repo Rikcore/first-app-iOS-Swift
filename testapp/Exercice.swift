@@ -58,6 +58,7 @@ class Exercice : UIViewController, UITextFieldDelegate {
     }
     
     func alert(_ title: String, message: String) {
+        tfNombreEntre.text = ""
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil)
         alert.addAction(ok)
