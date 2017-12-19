@@ -152,6 +152,7 @@
                     <connections>
                         <outlet property="bFin" destination="s52-sm-wMK" id="geW-Fr-fj8"/>
                         <outlet property="lbQuestion" destination="KBj-RJ-Djj" id="4dN-9T-Bhd"/>
+                        <outlet property="lbTitle" destination="fsW-Or-pNx" id="HvE-Vv-8jK"/>
                         <outlet property="sAuto" destination="M5r-BR-OWQ" id="WJl-hG-lLO"/>
                         <outlet property="slnumber" destination="D3L-Mk-ao3" id="6Sa-dT-FsA"/>
                         <outlet property="stNumber" destination="6cS-Av-WgS" id="sd6-RA-RPj"/>
@@ -160,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="976.79999999999995" y="134.48275862068968"/>
+            <point key="canvasLocation" x="988" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7v7-lx-ohs">

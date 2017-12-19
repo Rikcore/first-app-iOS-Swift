@@ -11,6 +11,7 @@ import Firebase
 
 class Exercice : UIViewController, UITextFieldDelegate {
     
+    @IBOutlet var lbTitle : UILabel!
     @IBOutlet var lbQuestion : UILabel!
     @IBOutlet var tfNombreEntre : UITextField!
     @IBOutlet var bFin : UIButton!
@@ -34,6 +35,7 @@ class Exercice : UIViewController, UITextFieldDelegate {
         stNumber.maximumValue = 99
         
         calcul = CalculExercice(difficulte : niveau)
+        calcul.fillTitle(label: lbTitle)
         lbQuestion.text = calcul.consigne
         
         ref = Database.database().reference()

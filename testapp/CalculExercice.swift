@@ -6,7 +6,7 @@
 //  Copyright © 2017 Cyprien Chamayou. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class CalculExercice {
     var consigne : String
@@ -31,6 +31,10 @@ class CalculExercice {
             
         }
         
+    }
+    
+    func fillTitle (label : UILabel){
+        label.text = titre
     }
     
     
